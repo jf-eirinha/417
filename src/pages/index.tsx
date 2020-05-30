@@ -2,7 +2,6 @@
 import React from "react"
 import { PageProps, Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -10,12 +9,17 @@ type Data = {
   site: {
     siteMetadata: {
       title: string
+      author: {
+        name: string
+        summary: string
+      }
     }
   }
   allMarkdownRemark: {
     edges: {
       node: {
         excerpt: string
+        html: string
         frontmatter: {
           title: string
           date: string
@@ -31,35 +35,34 @@ type Data = {
 
 const BlogIndex = ({ data, location }: PageProps<Data>) => {
   const siteTitle = data.site.siteMetadata.title
+  const siteSummary = data.site.siteMetadata.author.summary
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <h1>Test!</h1>
-      {/* <SEO title="All posts" />
-      <Bio />
+    <Layout title={siteTitle} summary={siteSummary}>
+      <SEO title="All posts" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <article key={node.fields.slug} className='article'>
             <header>
-              <h3>
+              <h1>
                 <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
                   {title}
                 </Link>
-              </h3>
+              </h1>
               <small>{node.frontmatter.date}</small>
             </header>
             <section>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: node.html,
                 }}
               />
             </section>
           </article>
         )
-      })} */}
+      })}
     </Layout>
   )
 }
@@ -71,12 +74,17 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+          summary
+        }
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
+          html
           fields {
             slug
           }

@@ -1,13 +1,7 @@
-/**
- * Bio component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import AboutIcon from '../../content/assets/about-icon.svg'
+import GithubIcon from '../../content/assets/github-icon.svg'
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -21,44 +15,29 @@ const Bio = () => {
       }
       site {
         siteMetadata {
-          author {
-            name
-            summary
-          }
           social {
-            twitter
+            github
           }
         }
       }
     }
   `)
 
-  const { author, social } = data.site.siteMetadata
+  const { social } = data.site.siteMetadata
   return (
-    <div
-      style={{
-        display: `flex`,
-      }}
-    >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
-        alt={author.name}
-        style={{
-          marginBottom: 0,
-          minWidth: 50,
-          borderRadius: `100%`,
-        }}
-        imgStyle={{
-          borderRadius: `50%`,
-        }}
-      />
-      <p>
-        Written by <strong>{author.name}</strong> {author.summary}
-        {` `}
-        <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+    <div className='bio-link'>
+      <div className='link-container'>
+        <AboutIcon className='icon' />
+        <a className='icon-link' href={`/about`}>
+          About
         </a>
-      </p>
+      </div>
+      <div className='link-container'>
+        <GithubIcon className='icon' />
+        <a className='icon-link' target='_blank' rel='noreferrer' href={`https://github.com/${social.github}`}>
+          Github
+        </a>
+      </div>
     </div>
   )
 }

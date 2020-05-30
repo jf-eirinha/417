@@ -1,71 +1,46 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+import BackIcon from '../../content/assets/back-icon.svg'
+import ShareIcon from '../../content/assets/share-icon.svg'
+
+const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
-  const { previous, next } = pageContext
+  const siteSummary = data.site.siteMetadata.author.summary
+  const [open, toggle] = React.useReducer(v => !v, false)
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle} summary={siteSummary}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
       <article>
         <header>
-          <h1
-            style={{
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
-          <p
-            style={{
-              display: `block`,
-            }}
-          >
-            {post.frontmatter.date}
-          </p>
+          <h1>{post.frontmatter.title}</h1>
+          <small>{post.frontmatter.date}</small>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr />
         <footer>
-          <Bio />
+          <Link className='link-container' to='/'>
+            <BackIcon className='icon' />
+            <div className='footer-icon-link'>
+              Back to posts
+            </div>
+          </Link>
+          <button className='link-container margin-left' onClick={toggle}>
+            <ShareIcon className='icon' />
+            <div className='footer-icon-link'>
+              Share
+            </div>
+            {open && <div>Share!!</div>}
+          </button>
         </footer>
       </article>
-
-      <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
     </Layout>
   )
 }
@@ -77,6 +52,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+          summary
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

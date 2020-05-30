@@ -1,17 +1,25 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Status Code 417`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `JFE`,
+      summary: `Hello! Dis my blog:`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://xxxxxxxxx.com/`,
     social: {
-      twitter: `kylemathews`,
+      github: `john-law`,
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
