@@ -55,6 +55,7 @@ body {
   justify-content: center;
   padding-top: 32px;
   padding-bottom: 32px;
+  min-height: 100vh;
 }
 
 .blog-title {
@@ -135,7 +136,6 @@ a {
 
 .article {
   margin-bottom: 42px;
-  border-bottom: 1px solid var(--t-color); 
 }
 
 .icon {

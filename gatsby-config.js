@@ -6,7 +6,7 @@ module.exports = {
       summary: `Hello! Dis my blog:`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://xxxxxxxxx.com/`,
+    siteUrl: `https://www.statuscode417.com/`,
     social: {
       github: `john-law`,
     },
@@ -68,13 +68,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Status Code 417`,
+        short_name: `417`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        background_color: `#DAD7E3`,
+        theme_color: `#2A2A2C`,
+        icon: `content/assets/bug-icon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,

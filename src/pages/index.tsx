@@ -53,13 +53,6 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
               </h1>
               <small>{node.frontmatter.date}</small>
             </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.html,
-                }}
-              />
-            </section>
           </article>
         )
       })}
