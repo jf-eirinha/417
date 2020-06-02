@@ -8,7 +8,7 @@ const Layout = ({ title, summary, children }) => {
       <header className='header'>
         <p className='summary'>{summary}</p>
         <h1>
-          <Link className='blog-title' to={`/`} >
+          <Link className='blog-title' to='/'>
             {title}
           </Link>
         </h1>

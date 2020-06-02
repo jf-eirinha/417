@@ -116,7 +116,6 @@ a {
   text-decoration: none;
 }
 
-
 .header {
   display: flex;
   flex-direction: column;
@@ -241,11 +240,3 @@ p {
 .about-item {
   font-family: 'IBM Plex Mono';
 }
-
-input {
-  margin-left: 20px;
-  width: 290px;
-  font-family: 'IBM Plex Mono';
-  border-radius: 4px;
-}
-
