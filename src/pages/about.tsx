@@ -22,7 +22,7 @@ const About = ({ data }: PageProps<Data>) => {
   return (
     <Layout title={siteTitle} summary={siteSummary}>
       <SEO title="About" />
-      <section>
+      <section className='about'>
         <ul>
           <li className='about-item'>
             Engineer.

@@ -64,6 +64,7 @@ body {
   #gatsby-focus-wrapper {
     flex-direction: column-reverse;
     justify-content: flex-end;
+    align-items: center;
   }
 }
 
@@ -131,10 +132,8 @@ a {
     border-top: 1px solid var(--t-color);
     border-right: none;
     padding-top: 32px;
-  }
-
-  .share-button {
-    display: none;
+    margin-right: 32px;
+    max-width: 100vw;
   }
 }
 
@@ -155,9 +154,16 @@ a {
   display: flex;
   flex-direction: column;
   width: 680px;
-  max-width: 90vw;
+  max-width: 100vw;
   padding-left: 45px;
   margin-right: 32px;
+}
+
+@media (max-width: 1024px) {
+  .articles {
+    margin: 0;
+    padding-right: 45px;
+  }
 }
 
 .article {
@@ -226,6 +232,10 @@ p {
   line-height: 160%;
   margin: 0 0 18px 0;
   text-align: justify;
+}
+
+.about {
+  margin-bottom: 32px;
 }
 
 .about-item {

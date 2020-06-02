@@ -3,16 +3,13 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Share from "../components/share"
 
 import BackIcon from '../../content/assets/back-icon.svg'
-import ShareIcon from '../../content/assets/share-icon.svg'
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const siteSummary = data.site.siteMetadata.author.summary
-  const [open, toggle] = React.useReducer(v => !v, false)
 
   return (
     <Layout location={location} title={siteTitle} summary={siteSummary}>
@@ -33,13 +30,6 @@ const BlogPostTemplate = ({ data, location }) => {
               Back to posts
             </div>
           </Link>
-          <button className='link-container margin-left share-button' onClick={toggle}>
-            <ShareIcon className='icon' />
-            <div className='footer-icon-link'>
-              Share
-            </div>
-          </button>
-          {open && <Share />}
         </footer>
       </article>
     </Layout>
