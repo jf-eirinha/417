@@ -33,7 +33,7 @@ const BlogPostTemplate = ({ data, location }) => {
               Back to posts
             </div>
           </Link>
-          <button className='link-container margin-left' onClick={toggle}>
+          <button className='link-container margin-left share-button' onClick={toggle}>
             <ShareIcon className='icon' />
             <div className='footer-icon-link'>
               Share

@@ -56,6 +56,15 @@ body {
   padding-top: 32px;
   padding-bottom: 32px;
   min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  #gatsby-focus-wrapper {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
 }
 
 .blog-title {
@@ -116,6 +125,19 @@ a {
   border-right: 1px solid var(--t-color); 
 }
 
+@media (max-width: 1024px) {
+  .header {
+    width: 80%;
+    border-top: 1px solid var(--t-color);
+    border-right: none;
+    padding-top: 32px;
+  }
+
+  .share-button {
+    display: none;
+  }
+}
+
 .summary {
   font-size: 14px;
   font-family: 'IBM Plex Mono';
@@ -133,6 +155,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 680px;
+  max-width: 90vw;
   padding-left: 45px;
   margin-right: 32px;
 }
@@ -215,3 +238,4 @@ input {
   font-family: 'IBM Plex Mono';
   border-radius: 4px;
 }
+
