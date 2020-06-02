@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Share from "../components/share"
 
 import BackIcon from '../../content/assets/back-icon.svg'
 import ShareIcon from '../../content/assets/share-icon.svg'
@@ -37,8 +38,8 @@ const BlogPostTemplate = ({ data, location }) => {
             <div className='footer-icon-link'>
               Share
             </div>
-            {open && <div>Share!!</div>}
           </button>
+          {open && <Share />}
         </footer>
       </article>
     </Layout>

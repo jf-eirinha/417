@@ -68,9 +68,12 @@ body {
 
 .link-container {
   display: flex;
-  margin-top: 16px;
   cursor: pointer;
   align-items: center;
+}
+
+.margin-top {
+  margin-top: 16px;
 }
 
 .icon-link {
@@ -146,7 +149,9 @@ a {
 
 footer {
   display: flex;
+  align-items: center;
   padding-bottom: 32px;
+  height: 62px;
 }
 
 .margin-left {
@@ -198,4 +203,15 @@ p {
   line-height: 160%;
   margin: 0 0 18px 0;
   text-align: justify;
+}
+
+.about-item {
+  font-family: 'IBM Plex Mono';
+}
+
+input {
+  margin-left: 20px;
+  width: 290px;
+  font-family: 'IBM Plex Mono';
+  border-radius: 4px;
 }
