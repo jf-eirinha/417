@@ -26,7 +26,7 @@ const Bio = () => {
   const { social } = data.site.siteMetadata
   return (
     <div className='bio-link'>
-      <Link className='link-container margin-top' to='/about'>
+      <Link className='link-container margin-top custom-link' to='/about'>
         <AboutIcon className='icon' />
         <div className='icon-link' >
           About
@@ -34,7 +34,7 @@ const Bio = () => {
       </Link>
       <div className='link-container margin-top'>
         <GithubIcon className='icon' />
-        <a className='icon-link' target='_blank' rel='noreferrer' href={`https://github.com/${social.github}`}>
+        <a className='icon-link custom-link' target='_blank' rel='noreferrer' href={`https://github.com/${social.github}`}>
           Github
         </a>
       </div>

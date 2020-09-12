@@ -4,7 +4,11 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader';
+
 import BackIcon from '../../content/assets/back-icon.svg'
+
+deckDeckGoHighlightElement();
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark

@@ -48,6 +48,11 @@ body {
   background-color: var(--background-color);
   font-family: var(--font-family);
   color: var(--t-color);
+  overflow-x: hidden;
+}
+
+pre {
+  font-size: 13px;
 }
 
 #gatsby-focus-wrapper {
@@ -110,7 +115,7 @@ body {
   text-decoration: none;
 }
 
-a {
+custom-link {
   color: inherit;
   font-size: inherit;
   text-decoration: none;
