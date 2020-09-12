@@ -81,6 +81,11 @@ pre {
   text-decoration: none;
 }
 
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .link-container {
   display: flex;
   cursor: pointer;
@@ -111,7 +116,7 @@ pre {
   text-decoration: underline;
 }
 
-.footer-icon-link {
+.link-container {
   text-decoration: none;
 }
 

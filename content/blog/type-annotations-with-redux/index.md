@@ -175,7 +175,7 @@ type ActionBar = {
 type MyAction = ActionFoo | ActionBar
 ```
 
-A slightly better version of this would be:
+(A slightly better version of this would be:)
 
 ```javascript
 const FOO = 'FOO'
@@ -193,7 +193,7 @@ type ActionBar = {
 type MyAction = ActionFoo | ActionBar
 ```
 
-But we can use the `ReturnType<T>` utility type to get the same thing.
+We can use the `ReturnType<T>` utility type to get the same thing.
 
 ```javascript
 export type MyAction =
@@ -219,9 +219,11 @@ export type TodosAction =
 
 ## Sagas
 
-Finally, I define each of my sagas using the template below. I define the action argument as the return type of the `request` action creator, make the request, and `put` either the `success` or `error` action.
+Finally, I define each of my sagas using the template below. I define the action argument as the return type of the `request` action creator, make the request, and `put` either a `success` or `error` action.
 
-As recommended in Redux's [documentation](https://redux.js.org/style-guide/style-guide#put-as-much-logic-as-possible-in-reducers), if I need to perform any transformation of the response before changing the store's state I typically do it in the reducer, not in the saga, this also facilitates typing the actions, i.e., success actions _always_ take the response type as it comes from the API. As the reader might expect, instead of the fake API I normally would `call` the real API and `yield` the result. Typescript can't  infer that result so I explicitly tell it what the response will be. We should however have in mind that this works as long as we don't "break our promise" to Typescript, i.e., as long as the response is really of that type, if the API returns a response that is not of that type then the compiler can't give you any guarantees. There are [safer and inherently more complex](https://github.com/gcanti/io-ts) ways to this that I am still exploring and won't cover here.
+As recommended in Redux's [documentation](https://redux.js.org/style-guide/style-guide#put-as-much-logic-as-possible-in-reducers), if I need to perform any transformation of the response before changing the store's state I typically do it in the reducer, not in the saga, this also facilitates typing the actions, i.e., success actions _always_ take the response type as it comes from the API.
+
+As the reader might expect, instead of the fake API I normally would `call` the real API and `yield` the result. Typescript can't  infer that result so I explicitly tell it what the response will be. We should however have in mind that this works as long as we don't "break our promise" to Typescript, i.e., as long as the response is really of that type. If the API returns a response that is not of that type then the compiler can't give you any guarantees. There are [safer and inherently more complex](https://github.com/gcanti/io-ts) ways to this that I am still exploring and won't cover here.
 
 ```javascript
 export function* fetchTodosSaga(
