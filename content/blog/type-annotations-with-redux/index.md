@@ -272,4 +272,4 @@ type TodosProps = ReturnType<typeof mapStateToProps> &
   };
 ```
 
-And that's it. Hope you get something out of this. Don't forget smash that like button and subscribe!... Oh wait, no, this not where we say these things.
+And that's it. Hope you get something out of this. Don't forget to smash that like button and subscribe!... Oh wait, no, this is not where we say these things.
