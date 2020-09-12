@@ -1,7 +1,7 @@
 ---
 title: Typescript and Redux
 date: "2020-09-12T21:40:32.169Z"
-description: Description of my way to use Typescript with Redux in React
+description: Description of my way to use Typescript with Redux in a React application
 ---
 
 When I first started using Typescript one particular area in which I add to spend some time thinking about type annotations was Redux. At the time I looked at two very good resources for this: Redux's official documentation, and [this](https://github.com/piotrwitek/react-redux-typescript-guide) public repo built with various contributions from the React community, containing practical recipes for using Typescript and Redux.
@@ -28,12 +28,12 @@ export enum TodosActionTypes {
 }
 ```
 
-Our first design decision comes here. Most often people will use a string for each action type; enums provide a better way to do it.
+Our first design decision comes here. Most often people will use a string for each action type, but enums provide a better way to do it:
 
   1. You can import all of your action types once and don't need to change imports again when you change the store
   2. It provides you with autocomplete when writing each action type
 
-The value of each constant is the same as its name. Notice that I don't prefix the action type with the domain/feature it belongs to as I find that useless for debugging - the only valid reason I can think of to use it. For action types that belong to an asynchronous request I always suffix their name with `REQUEST`, `SUCCESS`, or `ERROR`, corresponding to each phase of the request's lifecycle.
+The value of each constant is the same as its name. Notice that I don't prefix the action type with the domain/feature it belongs to as I find that useless for debugging - the only valid reason I can think of to use it. For action types that belong to an asynchronous request I always suffix their name with `REQUEST`, `SUCCESS`, or `ERROR`, corresponding to the request's status.
 
 ## Store State
 
@@ -59,7 +59,7 @@ export type RequestStatus = {
 };
 ```
 
-This standard organizes the error handling from those requests. I prefer doing most of the error handling (which I don't include in the example) in the saga; this error string property is meant to store messages to be shown in the UI, i.e., messages relevant to the user. Things like redirects, logs, etc. should be done in the saga not at the component level.
+This standard organizes the error handling from those requests. I prefer doing most of the error handling (which I don't include in the example) in the saga; this error string property is meant to store messages to be shown in the UI, i.e., messages relevant to the user. Other logic such as redirects, logs, etc. should be done in the saga not at the component level.
 
 ## Action Creators
 
@@ -201,7 +201,7 @@ export type MyAction =
   | ReturnType<typeof barAction>;
 ```
 
-For the object containing the action creators for the asynchronous request it's a bit trickier, because the functions are nested inside the object. So with a little hand I created a helper type to get the return type of the functions nested inside the object:
+For the object containing the action creators of the asynchronous request it's a bit trickier, because the functions are nested inside the object. So with a little hand I created a helper type to get the return type of the functions nested inside the object:
 
 ```javascript
 type ReturnNestedType<T> = T[keyof T] extends (...args: any) => infer R
@@ -209,7 +209,7 @@ type ReturnNestedType<T> = T[keyof T] extends (...args: any) => infer R
   : never;
 ```
 
-So I end up defining the `TodoAction` as:
+So I end up defining the `TodosAction` as:
 
 ```javascript
 export type TodosAction =
