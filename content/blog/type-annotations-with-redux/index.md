@@ -158,7 +158,7 @@ export default function reducer(
 
 As you can see I also use an [immutability library](https://github.com/kolodny/immutability-helper); this makes it much easier to deal with the state without mutating it.
 
-The `TodosAction` type is simply and union of all the possible action types. Now, while we could explicitly define each of those actions - as many people do -, that would be redundant, in the sense that we already "know" that type because it is whatever type each of the action creators returns.
+The `TodosAction` type is simply an union of all the possible action types. Now, while we could explicitly define each of those actions - as many people do -, that would be redundant, in the sense that we already "know" that type because it is whatever type each of the action creators returns.
 
 So, to be clear, as an example, instead of doing something of this sort:
 
