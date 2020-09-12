@@ -1,5 +1,5 @@
 ---
-title: Type Annotations with Redux
+title: Typescript and Redux
 date: "2020-09-12T21:40:32.169Z"
 description: Description of my way to use Typescript with Redux in React
 ---
@@ -10,7 +10,7 @@ Having read those and after several iterations while adding and changing feature
 
 This guide of course is highly opinionated; I don't think there is such thing as a "canonical" way to do this. This is just a collection of patterns and naming conventions that I feel are easy to work with.
 
-I will go through a basic example that shows a To-Do list (of course!, the "Hello World" of web applications) connected to a Redux store. All this app does is it fetches a list of todos from a fake API and displays it. The user also has the ability to hide or see the todos. That's it! As I go through the example I will be comparing the annotations to the style of implementation that I most often see being used. The whole code can be accessed in [this](https://codesandbox.io/s/redux-typescript-example-1k4xs) sandbox.
+I will go through a basic example that shows a To-Do list (of course!, the "Hello World" of web applications) connected to a Redux store in a React application. All this app does is it fetches a list of todos from a fake API and displays it. The user also has the ability to hide or see the todos. That's it! As I go through the example I will be comparing the annotations to the style of implementation that I most often see being used. The whole code can be accessed in [this](https://codesandbox.io/s/redux-typescript-example-1k4xs) sandbox.
 
 This particular example organizes our store in ducks and sagas files, but that has no connection to what I am trying to illustrate. I won't be explaining the reason for that choice as it is out of this article's scope.
 

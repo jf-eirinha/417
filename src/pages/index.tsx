@@ -39,7 +39,7 @@ const BlogIndex = ({ data }: PageProps<Data>) => {
 
   return (
     <Layout title={siteTitle} summary={siteSummary}>
-      <SEO title="All posts" />
+      <SEO title="Status Code 417" />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (

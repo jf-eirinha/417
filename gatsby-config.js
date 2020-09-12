@@ -5,7 +5,7 @@ module.exports = {
       name: `JFE`,
       summary: `Hello! Dis my blog:`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `Hello! Dis my blog!`,
     siteUrl: `https://www.statuscode417.com/`,
     social: {
       github: `john-law`,
