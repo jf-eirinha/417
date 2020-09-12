@@ -14,7 +14,7 @@ I will go through a basic example that shows a To-Do list (of course!, the "Hell
 
 This particular example organizes our store in ducks and sagas files, but that has no connection to what I am trying to illustrate. I won't be explaining the reason for that choice as it is out of this article's scope.
 
-Let's get to it. Starting with what we keep in our store and what actions we want to perform.
+Let's get to it! Starting with what we keep in our store and what actions we want to perform.
 
 ## Actions
 
@@ -33,7 +33,7 @@ Our first design decision comes here. Most often people will use a string for ea
   1. You can import all of your action types once and don't need to change imports again when you change the store
   2. It provides you with autocomplete when writing each action type
 
-The value of each constant is the same as its name. Notice that I don't prefix the action type with the domain/feature it belongs to; I find that useless for debugging so it would just add one more thing to write and generate mistakes. For action types that belong to an asynchronous request I always suffix their name with `"REQUEST"`, `"SUCCESS"`, or `"ERROR"`, corresponding to each phase of the request's lifecycle.
+The value of each constant is the same as its name. Notice that I don't prefix the action type with the domain/feature it belongs to as I find that useless for debugging - the only valid reason I can think of to use it. For action types that belong to an asynchronous request I always suffix their name with `REQUEST`, `SUCCESS`, or `ERROR`, corresponding to each phase of the request's lifecycle.
 
 ## Store State
 
@@ -88,7 +88,7 @@ export const fetchTodosActions = {
 };
 ```
 
-I choose to give the `payload` property to every action with a payload (except for errors and responses). This is closer to the [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) (although I don't fully adhere to it) and makes it easier when adding new actions: you can copy paste that object and simply replace the types.
+I choose to give the `payload` property to every action with a payload (except for errors and responses). This is closer to the [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) (although I don't fully adhere to it) and makes it easier when adding new actions: you can copy and paste that object and simply replace the types.
 
 For synchronous actions I just type them as such:
 
@@ -99,11 +99,11 @@ export const toggleViewAction = () =>
   } as const);
 ```
 
-Notice the `as const` as well; the const assertion makes the action readonly. Although... If we wanted to be really strict about immutability we could also use the `Readonly<T>` utility type for the store's state. I choose not to as I feel it makes the code too verbose and obscures the data, so I prefer to communicate through code to future maintainers that you should not mutate state.
+Notice the `as const` as well; the const assertion makes the action readonly. (Although... If we wanted to be really strict about immutability we could also use the `Readonly<T>` utility type for the store's state. I choose not to as I feel it makes the code too verbose and obscures the data, so I prefer to communicate through code to future maintainers that you should not mutate state)
 
 ## Reducer
 
-The reducer takes our state and returns a new one after executing an action. So that should be reflected in its type annotations: it takes an initial state (`initialState` as seen above), one of the actions we created `TodosAction`, and returns a new state of type `TodoStore` - the same as `state`. 
+The reducer takes our state and returns a new one after executing an action. So that should be reflected in its type annotations: it takes an initial state (`initialState` as seen above), one of the actions we created (`TodosAction`), and returns a new state of type `TodoStore` - the same as `state`. 
 
 
 ```javascript
@@ -221,9 +221,9 @@ export type TodosAction =
 
 Finally, I define each of my sagas using the template below. I define the action argument as the return type of the `request` action creator, make the request, and `put` either a `success` or `error` action.
 
-As recommended in Redux's [documentation](https://redux.js.org/style-guide/style-guide#put-as-much-logic-as-possible-in-reducers), if I need to perform any transformation of the response before changing the store's state I typically do it in the reducer, not in the saga, this also facilitates typing the actions, i.e., success actions _always_ take the response type as it comes from the API.
+As recommended in Redux's [documentation](https://redux.js.org/style-guide/style-guide#put-as-much-logic-as-possible-in-reducers), if I need to perform any transformation of the response before changing the store's state I typically do it in the reducer, not in the saga, this also facilitates typing the actions - success actions _always_ take the response type as it comes from the API.
 
-As the reader might expect, instead of the fake API I normally would `call` the real API and `yield` the result. Typescript can't  infer that result so I explicitly tell it what the response will be. We should however have in mind that this works as long as we don't "break our promise" to Typescript, i.e., as long as the response is really of that type. If the API returns a response that is not of that type then the compiler can't give you any guarantees. There are [safer and inherently more complex](https://github.com/gcanti/io-ts) ways to this that I am still exploring and won't cover here.
+As the reader might expect, instead of the fake API I normally would `call` the real API and `yield` the result. Typescript can't infer that result so I explicitly tell it what the response will be. We should however have in mind that this works as long as we don't "break our promise" to Typescript, i.e., as long as the response is really of that type. If the API returns a response that is not of that type then the compiler can't give you any guarantees. There are [safer and inherently more complex](https://github.com/gcanti/io-ts) ways to this that I am still exploring and won't cover here.
 
 ```javascript
 export function* fetchTodosSaga(
@@ -261,9 +261,9 @@ export const mapDispatchToProps = (dispatch: Dispatch) =>
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
 ```
 
-Let's dissect what we did here: we map the state from the store we want to access, bind the action creators (this just means that we're saying that the `fetchTodos` is a `dispatch()` of the action creator `fetchTodosActions.request`) and connect them to our component.
+Let's dissect what we did here: we map the state from the store we want to access, bind the action creators (this just means that the `fetchTodos` is a `dispatch()` of the action creator `fetchTodosActions.request`), and connect them to our component.
 
-To type the component's props we could - again -, explicitly type them; but we don't need that! We know the state type, and we know the action types that we need to dispatch. So our props are: i) the store state we mapped to the component props, ii) the methods to dispatch our actions, and iii) whatever other props the component has, in this case, `title`.
+To type the component's props we could - again -, explicitly type them; but we don't need that! We know the state type, and we know the action types that we need to dispatch. So our props are: i) the store state we mapped to the component props, ii) the methods to dispatch our actions, and iii) whatever other props the component has; in this case, `title`.
 
 ```javascript
 type TodosProps = ReturnType<typeof mapStateToProps> &
