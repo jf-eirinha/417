@@ -4,7 +4,7 @@ date: "2020-09-12T21:40:32.169Z"
 description: Description of my way to use Typescript with Redux in a React application
 ---
 
-When I first started using Typescript one particular area in which I add to spend some time thinking about type annotations was Redux. At the time I looked at two very good resources for this: Redux's official documentation, and [this](https://github.com/piotrwitek/react-redux-typescript-guide) public repo built with various contributions from the React community, containing practical recipes for using Typescript and Redux.
+When I first started using Typescript one particular area in which I had to spend some time thinking about type annotations was Redux. At the time I looked at two very good resources for this: Redux's official documentation, and [this](https://github.com/piotrwitek/react-redux-typescript-guide) public repo built with various contributions from the React community, containing practical recipes for using Typescript and Redux.
 
 Having read those and after several iterations while adding and changing features, I got to what I currently think of my ideal way to type and organize the different Redux elements.
 
