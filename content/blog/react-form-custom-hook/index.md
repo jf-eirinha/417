@@ -10,7 +10,7 @@ I thought I could make a simple React hook with an API alike to the ones used by
 
 ## The API
 
-Before getting into the how it works let's get straight to how you use it. If you want to checkout the whole code, I created a [sandbox](https://codesandbox.io/s/tender-hertz-hezdc) with a basic example of using the hook.
+Before getting into the how it works let's get straight to how you use it. If you want to checkout the whole code, I created a [sandbox](https://codesandbox.io/s/tender-hertz-hezdc) with a basic example of using the hook, I encourage you to try it out and play with it!
 
 ```javascript
 const { formState, handleChange, handleFocus } = useForm({
@@ -63,11 +63,11 @@ if (somethingElseHappens) setValue('email', 'email@mail.com');
 You're implementing a profile page. The user has the ability to change information about himself. In that profile page there's a "Save" button but it should only be enabled when the information is different than what's saved in your database, i.e. the user changed something. After the user hits "Save" and the information is updated in the database you want the "Save" button to be disabled again and the form state updated. So imagine that your component is getting fed a "profile" prop with the profile information. When that changes (after a successful update of the database) we want to reset our form state with the new values. So for that we call `resetForm` - which is kept in a component `ref` - on an effect that has `profile` as a dependency. This resets the values of the form and its state and `isDirty` would be `false` again.
 
 ```javascript
-const resetFormRef = React.useRef(resetForm)
+const resetFormRef = React.useRef(resetForm);
 
 React.useEffect(() => {
   resetFormRef.current(profile)
-}, [profile])
+}, [profile]);
 ```
 
 ## Field Validation Rules
