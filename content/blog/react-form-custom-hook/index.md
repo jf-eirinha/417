@@ -6,11 +6,11 @@ description: Creating a customizable form hook in React
 
 Forms are one of the most usual components of modern web applications. There's a lot of shared functionality between each form implementation so it's useful to have a common approach to creating them. Many people share snippets of code they had written before, others like to use one of the many form libraries out there. I tried the latter option and quickly found out that none provided exactly the behavior I wanted. [Formik](https://formik.org/) and [React Hook Form](https://react-hook-form.com/) - the two packages I tried out, are both great solutions but I felt that I preferred something a little more customizable, plus I have a natural aversion to using third-party packages for things I think I can implement myself.
 
-I thought I could make a simple React hook with an API alike to the ones used by those libraries which would give me everything I wanted, and so I went on that quest. I have worked with this hook several times and I find it incredibly useful, but despite the apparent simplicity of forms it seems that there's always a new edge case I hadn't cover, so I still consider it a work in progress. In fact this last versions contains a few valuable improvements suggested by a colleague of mine, so thank you Nuno for the input!
+I thought I could make a simple React hook with an API alike to the ones used by those libraries which would give me everything I wanted, and so I went on that quest. I have worked with this hook several times and I find it incredibly useful, but despite the apparent simplicity of forms it seems that there's always a new edge case I hadn't cover, so I still consider it a work in progress. In fact this last version contains a few valuable improvements suggested by a colleague of mine, so thank you Nuno for the input!
 
 ## The API
 
-Before getting into the how it works let's get straight to how you use it. If you want to checkout the whole code, I created a [sandbox](https://codesandbox.io/s/tender-hertz-hezdc) with a basic example of using the hook, I encourage you to try it out and play with it!
+Before getting into how it works let's get straight to how you use it. If you want to checkout the whole code, I created a [sandbox](https://codesandbox.io/s/tender-hertz-hezdc) with a basic example of using the hook, I encourage you to try it out and play with it!
 
 ```javascript
 const { formState, handleChange, handleFocus } = useForm({
@@ -88,9 +88,9 @@ const { formState, handleChange, handleFocus } = useForm({
 
 ## How it works
 
-I drawn inspiration from [React Hook Form](https://react-hook-form.com/) to build the hook but unlike that library I do not use uncontrolled inputs. So the algorithm is actually really straightforward:
+I've drawn inspiration from [React Hook Form](https://react-hook-form.com/) to build the hook but unlike that library I do not use uncontrolled inputs. So the algorithm is actually really straightforward:
 
 - **Initialize State:** We start by initializing the form state with the provided default values. At this moment we also check for errors.
-- **State Changes:** The form is updated every time a form field is focused or changed. When this happens the code uses the change and the previous state to compute the new state, namely: what are the new values, what fields have errors, what fields are "dirty", what field is focused, and what fields have been touched. From this it derives if the form is valid (`isValid`), has been touched (`isTouched`), or dirty (`isDirty`).
+- **Update on State Changes:** The form is updated every time a form field is focused or changed. When this happens the code uses the change and the previous state to compute the new state, namely: what are the new values, what fields have errors, what fields are "dirty", what field is focused, and what fields have been touched. From this it derives if the form is valid (`isValid`), has been touched (`isTouched`), or dirty (`isDirty`).
 
-And that's it. If you want need a tiny hook with a powerful set of functionalities consider using this one and if you have any suggestions or corrections to make please feel free to contact me on GitHub, they are very much appreciated.
+And that's it. If you need a tiny hook with a powerful set of functionalities consider using this one and if you have any suggestions or corrections to make please feel free to contact me on GitHub, they are very much appreciated.
