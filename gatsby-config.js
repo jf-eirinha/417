@@ -8,7 +8,7 @@ module.exports = {
     description: `Hello! Dis my blog!`,
     siteUrl: `https://www.statuscode417.com/`,
     social: {
-      github: `john-law`,
+      github: `jf-eirinha`,
     },
   },
   plugins: [
